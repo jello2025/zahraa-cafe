@@ -5,7 +5,7 @@ export type MenuItemTypes = {
   description: string;
 };
 
-export const menuList: MenuItemTypes[] = [
+export const menu: MenuItemTypes[] = [
   {
     id: 1,
     name: "Something Else Latte",

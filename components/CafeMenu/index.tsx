@@ -1,40 +1,21 @@
-import { menuList } from "@/features/cafe-menu/dummy-data/menu";
+import { menu } from "@/data/menu/menu";
 import { Image } from "expo-image";
 import { LinearGradient } from "expo-linear-gradient";
-import { router } from "expo-router";
 import {
   ImageStyle,
   ScrollView,
   StyleSheet,
-  Text,
-  TextStyle,
-  TouchableOpacity,
   View,
   ViewStyle,
 } from "react-native";
+import MenuItem from "./MenuItem";
 
 const imgURI =
   "https://media.istockphoto.com/id/1467739359/photo/cup-of-coffee-with-smoke-and-coffee-beans-on-old-wooden-background.jpg?s=612x612&w=0&k=20&c=tE80r7iDn7S9YwIJVuKAm5KmpJPVz5HbRDc975IlKVo=";
 
 export default function Menu() {
-  const menu = menuList.map((item) => (
-    <TouchableOpacity
-      key={item.id}
-      onPress={() =>
-        router.navigate({
-          pathname: "/menu-item/[id]",
-          params: { id: item.id as number },
-        })
-      }
-      style={styles.menuItem}
-    >
-      <Image
-        contentFit="contain"
-        source={{ uri: item.image }}
-        style={styles.menuImage}
-      />
-      <Text style={styles.menuText}>{item.name}</Text>
-    </TouchableOpacity>
+  const menuList = menu.map((menuItem) => (
+    <MenuItem key={menuItem.id} menuItem={menuItem} />
   ));
 
   return (
@@ -51,7 +32,7 @@ export default function Menu() {
         />
       </View>
       <ScrollView contentContainerStyle={styles.menuContainer}>
-        {menu}
+        {menuList}
       </ScrollView>
     </View>
   );
@@ -63,9 +44,6 @@ interface Styles {
   headerImage: ImageStyle;
   headerGradient: ViewStyle;
   menuContainer: ViewStyle;
-  menuItem: ViewStyle;
-  menuImage: ImageStyle;
-  menuText: TextStyle;
 }
 
 const styles = StyleSheet.create<Styles>({
@@ -95,22 +73,5 @@ const styles = StyleSheet.create<Styles>({
     columnGap: 15,
     padding: 15,
     paddingBottom: 50,
-  },
-  menuItem: {
-    width: 160,
-    height: 160,
-    justifyContent: "center",
-    alignItems: "center",
-  },
-  menuImage: {
-    width: "100%",
-    height: "100%",
-    resizeMode: "contain",
-  },
-  menuText: {
-    color: "#3C3431",
-    fontSize: 12,
-    width: 160,
-    textAlign: "center",
   },
 });
