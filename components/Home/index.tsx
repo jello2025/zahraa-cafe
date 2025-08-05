@@ -1,4 +1,5 @@
 import { ImageBackground } from "expo-image";
+import { router } from "expo-router";
 import {
   StyleSheet,
   Text,
@@ -17,7 +18,7 @@ export default function HomeScreen() {
       source={{ uri: imgURI }}
       style={styles.background}
     >
-      <TouchableOpacity>
+      <TouchableOpacity onPress={() => router.push("/menu")}>
         <Text style={styles.buttonText}>Browse our special coffee ☕️</Text>
       </TouchableOpacity>
     </ImageBackground>
