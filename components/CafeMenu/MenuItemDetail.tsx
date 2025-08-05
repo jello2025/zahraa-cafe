@@ -1,7 +1,6 @@
 import { menu } from "@/data/menu/menu";
 import { Image } from "expo-image";
 import { LinearGradient } from "expo-linear-gradient";
-import { Stack } from "expo-router";
 import { StyleSheet, Text, View } from "react-native";
 
 const MenuItemDetail = () => {
@@ -9,10 +8,6 @@ const MenuItemDetail = () => {
 
   return (
     <View style={styles.container}>
-      <Stack.Screen
-        name={"menu-item/[id]"}
-        options={{ title: menuItemDetails?.name }}
-      />
       <View style={styles.headerImageContainer}>
         <Image
           contentFit="cover"
